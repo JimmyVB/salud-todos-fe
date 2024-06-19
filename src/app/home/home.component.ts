@@ -15,11 +15,11 @@ export class HomeComponent {
   }
 
   searchPatient() {
-    // this.router.navigate(['/search-patient']);
+    this.router.navigate(['/listado-pacientes']);
   }
 
   registerMedicalHistory() {
-    // this.router.navigate(['/register-medical-history']);
+    this.router.navigate(['/historia-clinica']);
   }
 
   searchMedicalHistory() {

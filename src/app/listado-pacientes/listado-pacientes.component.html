@@ -1,0 +1,75 @@
+<div class="listado-pacientes-container">
+  <h2>Listado de Pacientes</h2>
+  <p-table [value]="pacientes" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Género</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-paciente>
+      <tr>
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.apellido }}</td>
+        <td>{{ paciente.dni }}</td>
+        <td>{{ paciente.fechaNacimiento }}</td>
+        <td>{{ paciente.genero }}</td>
+        <td>
+          <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-primary" (click)="editarPaciente(paciente)"></button>
+          <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="eliminarPaciente(paciente.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Editar Paciente" [(visible)]="displayModal" [modal]="true" [closable]="false" [resizable]="false" >
+  <form [formGroup]="pacienteForm" (ngSubmit)="guardarCambios()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="nombre">Nombre</label>
+        <input pInputText id="nombre" formControlName="nombre" />
+      </div>
+      <div class="p-field">
+        <label for="apellido">Apellido</label>
+        <input pInputText id="apellido" formControlName="apellido" />
+      </div>
+      <div class="p-field">
+        <label for="dni">DNI</label>
+        <input pInputText id="dni" formControlName="dni" />
+      </div>
+      <div class="p-field">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input pInputText type="date" id="fechaNacimiento" formControlName="fechaNacimiento" />
+      </div>
+      <div class="p-field">
+        <label for="genero">Género</label>
+        <p-dropdown [options]="generos" formControlName="genero" placeholder="Seleccione un género"></p-dropdown>
+      </div>
+      <div class="p-field">
+        <label for="fechaNacimiento">Dirección</label>
+        <input pInputText type="text" id="direccion" formControlName="direccion" required>
+      </div>
+      <div class="p-field">
+        <label for="fechaNacimiento">Teléfono</label>
+        <input pInputText type="text" id="telefono" formControlName="telefono" required>
+      </div>
+      <div class="p-field">
+        <label for="fechaNacimiento">Correo Electrónico</label>
+        <input pInputText type="email" id="correo" formControlName="correo" required>
+      </div>
+      <div class="p-field">
+        <label for="fechaNacimiento">Grupo Sanguíneo</label>
+        <input pInputText type="text" id="grupoSanguineo" formControlName="grupoSanguineo" required>
+      </div>
+    </div>
+    <p-footer>
+      <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="displayModal=false"></button>
+      <button pButton type="submit" label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-toast />

@@ -16,7 +16,14 @@ import { PacienteComponent } from './paciente/paciente.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthenticatedLayoutComponent } from './authenticated-layout/authenticated-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
-
+import { ListadoPacientesComponent } from './listado-pacientes/listado-pacientes.component';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
+import { HistoriaClinicaComponent } from './historia-clinica/historia-clinica.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -26,7 +33,9 @@ import { LoginLayoutComponent } from './login-layout/login-layout.component';
     PacienteComponent,
     HeaderComponent,
     AuthenticatedLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    ListadoPacientesComponent,
+    HistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +45,13 @@ import { LoginLayoutComponent } from './login-layout/login-layout.component';
     ButtonModule,
     CardModule,
     InputTextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    DropdownModule,
+    ToastModule,
+    InputTextareaModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

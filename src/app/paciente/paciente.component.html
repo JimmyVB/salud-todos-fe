@@ -1,109 +1,114 @@
 <div class="register-patient-container">
-  <h2>Registrar Paciente</h2>
-  <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div class="form-group">
-      <label for="nombre">Nombre</label>
-      <input pInputText type="text" id="nombre" formControlName="nombre" required>
-      <div *ngIf="patientForm.get('nombre')?.invalid && (patientForm.get('nombre')?.dirty || patientForm.get('nombre')?.touched)" class="error">
-        <small>Nombre es requerido.</small>
+  <div>
+    <button class="back-button" (click)="goBack()">&larr; Regresar</button>
+  </div>
+  <div>
+    <h2>Registrar Paciente</h2>
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input pInputText type="text" id="nombre" formControlName="nombre" required>
+        <div *ngIf="patientForm.get('nombre')?.invalid && (patientForm.get('nombre')?.dirty || patientForm.get('nombre')?.touched)" class="error">
+          <small>Nombre es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="apellido">Apellido</label>
-      <input pInputText type="text" id="apellido" formControlName="apellido" required>
-      <div *ngIf="patientForm.get('apellido')?.invalid && (patientForm.get('apellido')?.dirty || patientForm.get('apellido')?.touched)" class="error">
-        <small>Apellido es requerido.</small>
+      <div class="form-group">
+        <label for="apellido">Apellido</label>
+        <input pInputText type="text" id="apellido" formControlName="apellido" required>
+        <div *ngIf="patientForm.get('apellido')?.invalid && (patientForm.get('apellido')?.dirty || patientForm.get('apellido')?.touched)" class="error">
+          <small>Apellido es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="dni">DNI</label>
-      <input pInputText type="text" id="dni" formControlName="dni" required>
-      <div *ngIf="patientForm.get('dni')?.invalid && (patientForm.get('dni')?.dirty || patientForm.get('dni')?.touched)" class="error">
-        <small>DNI es requerido.</small>
+      <div class="form-group">
+        <label for="dni">DNI</label>
+        <input pInputText type="text" id="dni" formControlName="dni" required>
+        <div *ngIf="patientForm.get('dni')?.invalid && (patientForm.get('dni')?.dirty || patientForm.get('dni')?.touched)" class="error">
+          <small>DNI es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="fechaNacimiento">Fecha de Nacimiento</label>
-      <input pInputText type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
-      <div *ngIf="patientForm.get('fechaNacimiento')?.invalid && (patientForm.get('fechaNacimiento')?.dirty || patientForm.get('fechaNacimiento')?.touched)" class="error">
-        <small>Fecha de Nacimiento es requerido.</small>
+      <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input pInputText type="date" id="fechaNacimiento" formControlName="fechaNacimiento" required>
+        <div *ngIf="patientForm.get('fechaNacimiento')?.invalid && (patientForm.get('fechaNacimiento')?.dirty || patientForm.get('fechaNacimiento')?.touched)" class="error">
+          <small>Fecha de Nacimiento es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="genero">Género</label>
-      <input pInputText type="text" id="genero" formControlName="genero" required>
-      <div *ngIf="patientForm.get('genero')?.invalid && (patientForm.get('genero')?.dirty || patientForm.get('genero')?.touched)" class="error">
-        <small>Género es requerido.</small>
+      <div class="form-group">
+        <label for="genero">Género</label>
+        <div class="p-field">
+          <label for="genero">Género</label>
+          <p-dropdown [options]="generos" formControlName="genero" placeholder="Seleccione un género"></p-dropdown>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="direccion">Dirección</label>
-      <input pInputText type="text" id="direccion" formControlName="direccion" required>
-      <div *ngIf="patientForm.get('direccion')?.invalid && (patientForm.get('direccion')?.dirty || patientForm.get('direccion')?.touched)" class="error">
-        <small>Dirección es requerido.</small>
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input pInputText type="text" id="direccion" formControlName="direccion" required>
+        <div *ngIf="patientForm.get('direccion')?.invalid && (patientForm.get('direccion')?.dirty || patientForm.get('direccion')?.touched)" class="error">
+          <small>Dirección es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="telefono">Teléfono</label>
-      <input pInputText type="text" id="telefono" formControlName="telefono" required>
-      <div *ngIf="patientForm.get('telefono')?.invalid && (patientForm.get('telefono')?.dirty || patientForm.get('telefono')?.touched)" class="error">
-        <small>Teléfono es requerido.</small>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input pInputText type="text" id="telefono" formControlName="telefono" required>
+        <div *ngIf="patientForm.get('telefono')?.invalid && (patientForm.get('telefono')?.dirty || patientForm.get('telefono')?.touched)" class="error">
+          <small>Teléfono es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="correo">Correo Electrónico</label>
-      <input pInputText type="email" id="correo" formControlName="correo" required>
-      <div *ngIf="patientForm.get('correo')?.invalid && (patientForm.get('correo')?.dirty || patientForm.get('correo')?.touched)" class="error">
-        <small>Correo Electrónico es requerido.</small>
+      <div class="form-group">
+        <label for="correo">Correo Electrónico</label>
+        <input pInputText type="email" id="correo" formControlName="correo" required>
+        <div *ngIf="patientForm.get('correo')?.invalid && (patientForm.get('correo')?.dirty || patientForm.get('correo')?.touched)" class="error">
+          <small>Correo Electrónico es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="grupoSanguineo">Grupo Sanguíneo</label>
-      <input pInputText type="text" id="grupoSanguineo" formControlName="grupoSanguineo" required>
-      <div *ngIf="patientForm.get('grupoSanguineo')?.invalid && (patientForm.get('grupoSanguineo')?.dirty || patientForm.get('grupoSanguineo')?.touched)" class="error">
-        <small>Grupo Sanguíneo es requerido.</small>
+      <div class="form-group">
+        <label for="grupoSanguineo">Grupo Sanguíneo</label>
+        <input pInputText type="text" id="grupoSanguineo" formControlName="grupoSanguineo" required>
+        <div *ngIf="patientForm.get('grupoSanguineo')?.invalid && (patientForm.get('grupoSanguineo')?.dirty || patientForm.get('grupoSanguineo')?.touched)" class="error">
+          <small>Grupo Sanguíneo es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="peso">Peso</label>
-      <input pInputText type="text" id="peso" formControlName="peso" required>
-      <div *ngIf="patientForm.get('peso')?.invalid && (patientForm.get('peso')?.dirty || patientForm.get('peso')?.touched)" class="error">
-        <small>Peso es requerido.</small>
+      <div class="form-group">
+        <label for="peso">Peso</label>
+        <input pInputText type="text" id="peso" formControlName="peso" required>
+        <div *ngIf="patientForm.get('peso')?.invalid && (patientForm.get('peso')?.dirty || patientForm.get('peso')?.touched)" class="error">
+          <small>Peso es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="talla">Talla</label>
-      <input pInputText type="text" id="talla" formControlName="talla" required>
-      <div *ngIf="patientForm.get('talla')?.invalid && (patientForm.get('talla')?.dirty || patientForm.get('talla')?.touched)" class="error">
-        <small>Talla es requerido.</small>
+      <div class="form-group">
+        <label for="talla">Talla</label>
+        <input pInputText type="text" id="talla" formControlName="talla" required>
+        <div *ngIf="patientForm.get('talla')?.invalid && (patientForm.get('talla')?.dirty || patientForm.get('talla')?.touched)" class="error">
+          <small>Talla es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="alergias">Alergias</label>
-      <input pInputText type="text" id="alergias" formControlName="alergias" required>
-      <div *ngIf="patientForm.get('alergias')?.invalid && (patientForm.get('alergias')?.dirty || patientForm.get('alergias')?.touched)" class="error">
-        <small>Alergias es requerido.</small>
+      <div class="form-group">
+        <label for="alergias">Alergias</label>
+        <input pInputText type="text" id="alergias" formControlName="alergias" required>
+        <div *ngIf="patientForm.get('alergias')?.invalid && (patientForm.get('alergias')?.dirty || patientForm.get('alergias')?.touched)" class="error">
+          <small>Alergias es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="condicionesGenerales">Condiciones Generales</label>
-      <input pInputText type="text" id="condicionesGenerales" formControlName="condicionesGenerales" required>
-      <div *ngIf="patientForm.get('condicionesGenerales')?.invalid && (patientForm.get('condicionesGenerales')?.dirty || patientForm.get('condicionesGenerales')?.touched)" class="error">
-        <small>Condiciones Generales es requerido.</small>
+      <div class="form-group">
+        <label for="condicionesGenerales">Condiciones Generales</label>
+        <input pInputText type="text" id="condicionesGenerales" formControlName="condicionesGenerales" required>
+        <div *ngIf="patientForm.get('condicionesGenerales')?.invalid && (patientForm.get('condicionesGenerales')?.dirty || patientForm.get('condicionesGenerales')?.touched)" class="error">
+          <small>Condiciones Generales es requerido.</small>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="audio">Archivo de Voz</label>
-      <button type="button" (click)="startRecording()">Comenzar Grabación</button>
-      <button type="button" (click)="stopRecording()">Detener Grabación</button>
-      <button type="button" *ngIf="audioURL" (click)="playAudio()">Reproducir Grabación</button>
-      <button type="button" *ngIf="audioURL" (click)="stopAudio()">Detener Reproducción</button>
-      <button type="button" *ngIf="selectedFile" (click)="downloadAudio()">Descargar Grabación</button>
+      <div class="form-group">
+        <label for="audio">Archivo de Voz</label>
+        <button type="button" (click)="startRecording()">Comenzar Grabación</button>
+        <button type="button" (click)="stopRecording()">Detener Grabación</button>
+        <button type="button" *ngIf="audioURL" (click)="playAudio()">Reproducir Grabación</button>
+        <button type="button" *ngIf="audioURL" (click)="stopAudio()">Detener Reproducción</button>
+        <button type="button" *ngIf="selectedFile" (click)="downloadAudio()">Descargar Grabación</button>
 
-      <div *ngIf="!selectedFile && (patientForm.get('audio')?.dirty || patientForm.get('audio')?.touched)" class="error">
-        <small>Archivo de Voz es requerido.</small>
+        <div *ngIf="!selectedFile && (patientForm.get('audio')?.dirty || patientForm.get('audio')?.touched)" class="error">
+          <small>Archivo de Voz es requerido.</small>
+        </div>
       </div>
-    </div>
-    <button pButton type="submit" label="Guardar" class="p-button-primary" [disabled]="patientForm.invalid"></button>
-  </form>
+      <button pButton type="submit" label="Guardar" class="p-button-primary" [disabled]="patientForm.invalid"></button>
+    </form>
+  </div>
 </div>

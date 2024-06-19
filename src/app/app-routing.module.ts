@@ -6,18 +6,15 @@ import { AuthGuard } from './auth.guard';
 import { PacienteComponent } from './paciente/paciente.component';
 import { AuthenticatedLayoutComponent } from './authenticated-layout/authenticated-layout.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
+import { ListadoPacientesComponent } from './listado-pacientes/listado-pacientes.component';
+import { HistoriaClinicaComponent } from './historia-clinica/historia-clinica.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AuthenticatedLayoutComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'paciente', component: PacienteComponent }
-
-    ] },
-
-  { path: 'home', component: HomeComponent,  canActivate: [AuthGuard] },
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: LoginLayoutComponent,
@@ -25,7 +22,19 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent }
     ]
   },
-  { path: 'registrar-paciente', component: PacienteComponent, canActivate: [AuthGuard] },
+
+ {
+    path: '',
+    component: AuthenticatedLayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'registrar-paciente', component: PacienteComponent, canActivate: [AuthGuard] },
+      { path: 'listado-pacientes', component: ListadoPacientesComponent, canActivate: [AuthGuard] },
+      { path: 'historia-clinica', component: HistoriaClinicaComponent, canActivate: [AuthGuard] }
+
+    ]
+  },
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

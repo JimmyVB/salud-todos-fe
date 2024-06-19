@@ -1,16 +1,17 @@
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as RecordRTC from 'recordrtc';
 import { AuthService } from '../service/auth.service';
+import { Location } from '@angular/common'; // Importar Location
 
 @Component({
   selector: 'app-paciente',
   templateUrl: './paciente.component.html',
   styleUrls: ['./paciente.component.scss']
 })
-export class PacienteComponent {
+export class PacienteComponent implements OnInit {
   patientForm: FormGroup;
   selectedFile: File | null = null;
   private recordRTC: any;
@@ -18,15 +19,16 @@ export class PacienteComponent {
   audioURL: string | null = null;
   audio: HTMLAudioElement | null = null;
   authToken: any;
+  generos: any; // Opciones de género
 
-  constructor(private fb: FormBuilder, private http: HttpClient,
+  constructor(private fb: FormBuilder, private http: HttpClient, private location: Location,
     private sanitizer: DomSanitizer, private authService: AuthService) {
     this.patientForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       dni: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
-      genero: ['', Validators.required],
+      genero: [''],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
       correo: ['', [Validators.required, Validators.email]],
@@ -36,6 +38,13 @@ export class PacienteComponent {
       alergias: ['', Validators.required],
       condicionesGenerales: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
+    this.generos = [
+      { label: 'Masculino', value: 'Masculino' },
+      { label: 'Femenino', value: 'Femenino' }
+    ];
   }
 
   onFileChange(event: any) {
@@ -203,4 +212,9 @@ export class PacienteComponent {
         }
       );
   }
+
+  goBack() {
+    this.location.back();
+  }
+
 }

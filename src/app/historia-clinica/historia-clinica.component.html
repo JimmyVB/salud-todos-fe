@@ -1,0 +1,48 @@
+<div class="historia-clinica-container">
+  <h2>Registrar Historia Clínica</h2>
+  <form [formGroup]="historiaClinicaForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="paciente">Paciente ID</label>
+        <input pInputText id="paciente" formControlName="pacienteId" required />
+        <div *ngIf="historiaClinicaForm.get('pacienteId')?.invalid && (historiaClinicaForm.get('pacienteId')?.dirty || historiaClinicaForm.get('pacienteId')?.touched)" class="error">
+          <small>ID del paciente es requerido.</small>
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="peso">Peso</label>
+        <input pInputText id="peso" formControlName="peso" required />
+      </div>
+      <div class="p-field">
+        <label for="talla">Talla</label>
+        <input pInputText id="talla" formControlName="talla" required />
+      </div>
+      <div class="p-field">
+        <label for="alergias">Alergias</label>
+        <input pInputText id="alergias" formControlName="alergias" required />
+      </div>
+      <div class="p-field">
+        <label for="condicionesGenerales">Condiciones Generales</label>
+        <input pInputText id="condicionesGenerales" formControlName="condicionesGenerales" required />
+      </div>
+      <div class="p-field">
+        <label for="fechaConsulta">Fecha de Consulta</label>
+        <input pInputText type="date" id="fechaConsulta" formControlName="fechaConsulta" required />
+      </div>
+      <div class="p-field">
+        <label for="diagnostico">Diagnóstico</label>
+        <textarea pInputTextarea id="diagnostico" formControlName="diagnostico" required></textarea>
+      </div>
+      <div class="p-field">
+        <label for="tratamiento">Tratamiento</label>
+        <br>
+        <textarea pInputTextarea id="tratamiento" formControlName="tratamiento" required></textarea>
+      </div>
+      <div class="p-field">
+        <label for="observaciones">Observaciones</label>
+        <textarea pInputTextarea id="observaciones" formControlName="observaciones"></textarea>
+      </div>
+    </div>
+    <button pButton type="submit" label="Guardar" class="p-button-primary" [disabled]="historiaClinicaForm.invalid"></button>
+  </form>
+</div>
